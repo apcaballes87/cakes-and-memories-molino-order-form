@@ -1,69 +1,28 @@
-export interface CakeSize {
-  id: string;
-  name: string;
-  price: number;
+// FIX: Removed conflicting self-import of 'Product'. The type is defined in this file.
+export interface Product {
+  productType: string;
+  productSubType: string;
+  otherProduct: string;
+  message: string;
+  details: string;
+  quantity: number;
+  candle: string;
+  image: FileList | null;
 }
 
-export interface CakeFlavor {
-  id: string;
-  name: string;
-  price: number;
-}
-
-export interface CakeFilling {
-  id: string;
-  name: string;
-  price: number;
-}
-
-export interface CakeDesign {
-  id: string;
-  name: string;
-  price: number;
-}
-
-export interface CakeShape {
-  id: string;
-  name: string;
-  price: number;
-}
-
-export interface CakeDetails {
-  size: string;
-  shape: string;
-  flavor: string;
-  filling: string;
-  design: string;
-  message?: string;
-  referenceImage?: FileList;
-}
-
-export interface CakeOrderData {
-  customerName: string;
-  contactNumber: string;
-  email?: string;
-  cakes: CakeDetails[];
-  deliveryOption: 'pickup' | 'delivery';
-  deliveryDate: string;
-  deliveryAddress?: string;
-  specialInstructions?: string;
-  paymentMethod: 'cash' | 'gcash' | 'bank-transfer';
-  agreeToTerms: boolean;
-  agreeToRefundPolicy: boolean;
-}
-
-// Add the missing OrderFormData interface
 export interface OrderFormData {
-  customerName: string;
-  contactNumber: string;
-  email?: string;
-  cakes: CakeDetails[];
-  deliveryOption: 'pickup' | 'delivery';
-  deliveryDate: string;
-  deliveryAddress?: string;
-  specialInstructions?: string;
-  paymentMethod: 'cash' | 'card';
-  agreeToTerms: boolean;
-  agreeToRefundPolicy: boolean;
-  paymentPreview?: FileList;
+  facebookname: string;
+  name: string;
+  contact: string;
+  address: string;
+  isPickup: boolean;
+  isDifferentReceiver: boolean;
+  receiverName: string;
+  receiverContact: string;
+  dateEvent: string;
+  timeEvent: string;
+  products: Product[];
+  paymentOption: string;
+  instructions: string;
+  paymentScreenshot: FileList | null;
 }

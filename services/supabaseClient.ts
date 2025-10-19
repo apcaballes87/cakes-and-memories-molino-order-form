@@ -1,26 +1,9 @@
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { createClient } from '@supabase/supabase-js';
 
-// Add better error handling for environment variables
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
 
-// Log error if environment variables are missing
-if (!supabaseUrl) {
-  console.error('Missing VITE_SUPABASE_URL environment variable');
-}
-
-if (!supabaseAnonKey) {
-  console.error('Missing VITE_SUPABASE_ANON_KEY environment variable');
-}
-
-// Only create the Supabase client if both variables are present
-let supabase: SupabaseClient | null = null;
-if (supabaseUrl && supabaseAnonKey) {
-  supabase = createClient(supabaseUrl, supabaseAnonKey);
-  console.log('Supabase client initialized successfully');
-} else {
-  console.error('Supabase client not initialized due to missing environment variables');
-}
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 /**
  * Uploads a file to Supabase Storage.
@@ -29,12 +12,6 @@ if (supabaseUrl && supabaseAnonKey) {
  * @returns The public URL of the uploaded file, or null on error.
  */
 export const uploadFile = async (file: File): Promise<string | null> => {
-  // Check if Supabase client is initialized
-  if (!supabase) {
-    console.error('Supabase client not initialized');
-    return null;
-  }
-
   if (!file) return null;
 
   const fileExt = file.name.split('.').pop();
@@ -56,6 +33,3 @@ export const uploadFile = async (file: File): Promise<string | null> => {
     
   return data.publicUrl;
 };
-
-// Export the Supabase client
-export { supabase };
