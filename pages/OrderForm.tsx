@@ -20,6 +20,11 @@ const OrderForm = (): React.JSX.Element => {
     console.log('Checking Supabase client configuration:');
     console.log('Supabase URL:', import.meta.env.VITE_SUPABASE_URL);
     console.log('Supabase Key present:', !!import.meta.env.VITE_SUPABASE_ANON_KEY);
+    
+    // Check if Supabase client is properly initialized
+    if (!supabase) {
+      console.error('Supabase client is not initialized. Please check your environment variables.');
+    }
   }, []);
 
   const { 
@@ -64,9 +69,9 @@ const OrderForm = (): React.JSX.Element => {
     try {
       console.log('Submitting order with data:', data);
       
-      // Check if environment variables are available
-      if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KEY) {
-        throw new Error('Missing Supabase configuration. Please check environment variables.');
+      // Check if Supabase client is initialized
+      if (!supabase) {
+        throw new Error('Supabase client is not initialized. Please check your environment variables.');
       }
 
       // Success
@@ -90,6 +95,8 @@ const OrderForm = (): React.JSX.Element => {
     }
   };
 
+  // ... rest of the component remains the same ...
+  
   return (
     <div className="min-h-screen bg-lightBg">
       <Header />
