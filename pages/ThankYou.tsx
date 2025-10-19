@@ -10,7 +10,7 @@ const ThankYou = (): React.JSX.Element => {
 
   const handleNewOrder = () => {
     // Navigate to a default order form, or use a specific user if needed
-    navigate('/order/new-user/1');
+    navigate('/order/default-user/1');
   };
 
   return (
