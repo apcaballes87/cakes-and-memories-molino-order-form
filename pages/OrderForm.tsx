@@ -99,31 +99,41 @@ const OrderForm = (): React.JSX.Element => {
             ...productFiles.map(file => file ? uploadFile(file) : Promise.resolve(null)),
         ]);
         
+        // Helper function to convert null/undefined to empty string
+        const toEmptyString = (value: any): string => {
+            return value === null || value === undefined ? '' : String(value);
+        };
+        
+        // Helper function to convert null/undefined to 0
+        const toZero = (value: any): number => {
+            return value === null || value === undefined ? 0 : Number(value);
+        };
+        
         // Step 2: Construct the base order data object according to the mapping guide
         const orderData: any = {
             // Customer Info
-            facebookname: data.facebookname,
-            Name: data.name,
-            contact: data.contact,
+            facebookname: toEmptyString(data.facebookname),
+            Name: toEmptyString(data.name),
+            contact: toEmptyString(data.contact),
 
             // Delivery Info
-            Addres: data.isPickup ? 'PICKUP' : data.address,
+            Addres: toEmptyString(data.isPickup ? 'PICKUP' : data.address),
             latitude: null, // Per guide, set to null as we don't collect this
             longitude: null, // Per guide, set to null as we don't collect this
-            receiverName: data.isDifferentReceiver ? data.receiverName : null,
-            receiverContact: data.isDifferentReceiver ? data.receiverContact : null,
+            receiverName: toEmptyString(data.isDifferentReceiver ? data.receiverName : ''),
+            receiverContact: toEmptyString(data.isDifferentReceiver ? data.receiverContact : ''),
 
             // Date & Time
             DateOrdered: new Date().toISOString(),
-            DateEvent: data.dateEvent || null,
-            TimeEvent: data.timeEvent ? `${data.timeEvent}:00` : null,
+            DateEvent: toEmptyString(data.dateEvent),
+            TimeEvent: data.timeEvent ? `${data.timeEvent}:00` : '',
 
             // Payment & Additional
-            paymentOption: data.paymentOption,
+            paymentOption: toEmptyString(data.paymentOption),
             Comment: [orderNumberForDisplay, data.instructions].filter(Boolean).join('\n\n'),
 
             // Auto-generated/System Fields
-            orderNumber: paymentScreenshotUrl,
+            orderNumber: toEmptyString(paymentScreenshotUrl),
             numberproducts: data.products.length,
             branch: "Cavite",
             copiedToList: false,
@@ -150,45 +160,45 @@ const OrderForm = (): React.JSX.Element => {
 
             switch (index) {
                 case 0:
-                    orderData['Product1'] = productDescription;
-                    orderData['code1'] = null;
-                    orderData['Message1'] = product.message;
-                    orderData['details1'] = product.details;
-                    orderData['quantity1'] = product.quantity;
-                    orderData['Price1'] = null;
-                    orderData['Candle'] = product.candle;
-                    orderData['orderLink'] = imageUrl;
+                    orderData['Product1'] = toEmptyString(productDescription);
+                    orderData['code1'] = ''; // Changed from null to empty string
+                    orderData['Message1'] = toEmptyString(product.message);
+                    orderData['details1'] = toEmptyString(product.details);
+                    orderData['quantity1'] = toZero(product.quantity);
+                    orderData['Price1'] = 0; // Changed from null to 0
+                    orderData['Candle'] = toEmptyString(product.candle);
+                    orderData['orderLink'] = toEmptyString(imageUrl);
                     break;
                 case 1:
-                    orderData['Product2'] = productDescription;
-                    orderData['code2'] = null;
-                    orderData['message2'] = product.message;
-                    orderData['details2'] = product.details;
-                    orderData['quantity2'] = product.quantity;
-                    orderData['price2'] = null;
-                    orderData['candle2'] = product.candle;
-                    orderData['pic2'] = imageUrl;
+                    orderData['Product2'] = toEmptyString(productDescription);
+                    orderData['code2'] = ''; // Changed from null to empty string
+                    orderData['message2'] = toEmptyString(product.message);
+                    orderData['details2'] = toEmptyString(product.details);
+                    orderData['quantity2'] = toZero(product.quantity);
+                    orderData['price2'] = 0; // Changed from null to 0
+                    orderData['candle2'] = toEmptyString(product.candle);
+                    orderData['pic2'] = toEmptyString(imageUrl);
                     break;
                 case 2:
-                    orderData['product3'] = productDescription;
-                    orderData['code3'] = null;
-                    orderData['message3'] = product.message;
-                    orderData['details3'] = product.details;
-                    orderData['qty3'] = String(product.quantity);
-                    orderData['candle3'] = product.candle;
-                    orderData['pic3'] = imageUrl;
+                    orderData['product3'] = toEmptyString(productDescription);
+                    orderData['code3'] = ''; // Changed from null to empty string
+                    orderData['message3'] = toEmptyString(product.message);
+                    orderData['details3'] = toEmptyString(product.details);
+                    orderData['qty3'] = String(toZero(product.quantity));
+                    orderData['candle3'] = toEmptyString(product.candle);
+                    orderData['pic3'] = toEmptyString(imageUrl);
                     break;
             }
         });
         
-        // Step 4: Pad out unused product fields with null to ensure a complete object
+        // Step 4: Pad out unused product fields with empty strings or 0 instead of null
         for (let i = data.products.length; i < 3; i++) {
              switch (i) {
                 case 1:
-                    orderData['Product2'] = null; orderData['code2'] = null; orderData['message2'] = null; orderData['details2'] = null; orderData['quantity2'] = null; orderData['price2'] = null; orderData['candle2'] = null; orderData['pic2'] = null;
+                    orderData['Product2'] = ''; orderData['code2'] = ''; orderData['message2'] = ''; orderData['details2'] = ''; orderData['quantity2'] = 0; orderData['price2'] = 0; orderData['candle2'] = ''; orderData['pic2'] = '';
                     break;
                 case 2:
-                    orderData['product3'] = null; orderData['code3'] = null; orderData['message3'] = null; orderData['details3'] = null; orderData['qty3'] = null; orderData['candle3'] = null; orderData['pic3'] = null;
+                    orderData['product3'] = ''; orderData['code3'] = ''; orderData['message3'] = ''; orderData['details3'] = ''; orderData['qty3'] = '0'; orderData['candle3'] = ''; orderData['pic3'] = '';
                     break;
             }
         }
