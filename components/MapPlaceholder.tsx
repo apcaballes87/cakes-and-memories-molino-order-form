@@ -1,16 +1,54 @@
-
 import React from 'react';
 
-const MapPlaceholder = (): React.JSX.Element => {
-    return (
-        <div className="w-full h-[200px] rounded-2xl bg-gray-200 flex items-center justify-center border border-gray-300 mb-4">
-            <div className="text-center text-gray-500">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mx-auto h-8 w-8 text-gray-400 mb-2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                <p className="text-sm font-medium">Map Preview Appears Here</p>
-                <p className="text-xs">Enter address to update map</p>
-            </div>
-        </div>
-    );
+export const MapPlaceholder: React.FC = () => {
+  return (
+    <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-xl p-8 text-center">
+      <div className="text-grayText mb-2">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+        </svg>
+      </div>
+      <h3 className="text-lg font-medium text-grayText mb-1">Delivery Area Map</h3>
+      <p className="text-sm text-grayText mb-3">We deliver to the following areas in Bacoor, Cavite:</p>
+      <ul className="text-sm text-grayText text-left max-w-md mx-auto grid grid-cols-2 gap-1">
+        <li className="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+          Molino
+        </li>
+        <li className="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+          Dasmariñas
+        </li>
+        <li className="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+          Bacoor Proper
+        </li>
+        <li className="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+          Salinas
+        </li>
+        <li className="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+          Zapote
+        </li>
+        <li className="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+          Mamatid
+        </li>
+      </ul>
+      <p className="text-xs text-grayText mt-3">For areas outside this coverage, please contact us for availability.</p>
+    </div>
+  );
 };
-
-export default MapPlaceholder;

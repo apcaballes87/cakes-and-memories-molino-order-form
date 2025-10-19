@@ -1,14 +1,18 @@
-
 import React from 'react';
 
-const Header = (): React.JSX.Element => {
+export const Header: React.FC = () => {
   return (
-    <header className="sticky top-0 z-50 bg-primary text-white shadow-md">
-      <div className="mx-auto flex h-[66px] max-w-md items-center justify-center px-4">
-        <h1 className="text-xl font-bold">Cakes and Memories Molino</h1>
+    <header className="bg-white shadow-sm py-4 mb-6">
+      <div className="container mx-auto px-4 flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-primary">Cakes and Memories</h1>
+          <p className="text-sm text-grayText">Molino Branch Order Form</p>
+        </div>
+        <div className="text-right">
+          <p className="text-sm text-grayText">For orders and inquiries:</p>
+          <p className="font-semibold text-primary">0917 123 4567</p>
+        </div>
       </div>
     </header>
   );
 };
-
-export default Header;

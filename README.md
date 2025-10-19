@@ -1,20 +1,37 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Cakes and Memories Molino Order Form
 
-# Run and deploy your AI Studio app
+This is a React-based order form for Cakes and Memories Molino branch, built with TypeScript, Vite, and Tailwind CSS.
 
-This contains everything you need to run your app locally.
+## Features
 
-View your app in AI Studio: https://ai.studio/apps/drive/1tsbPkILWr2k9WKeyxAKQRda1XIWnMBTb
+- Responsive design for all device sizes
+- Multi-cake order support
+- Form validation with react-hook-form
+- Supabase integration for order submission
+- Tailwind CSS for styling
 
-## Run Locally
+## Setup
 
-**Prerequisites:**  Node.js
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Create a `.env.local` file with your Supabase credentials
+4. Run the development server: `npm run dev`
 
+## Deployment
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+This application is configured for deployment to Vercel.
+
+## Environment Variables
+
+- `VITE_SUPABASE_URL`: Your Supabase project URL
+- `VITE_SUPABASE_ANON_KEY`: Your Supabase anonymous key
+
+## Technologies Used
+
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- Supabase
+- React Hook Form
+- React Router DOM
