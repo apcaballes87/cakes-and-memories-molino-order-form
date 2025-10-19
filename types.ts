@@ -51,3 +51,19 @@ export interface CakeOrderData {
   agreeToTerms: boolean;
   agreeToRefundPolicy: boolean;
 }
+
+// Add the missing OrderFormData interface
+export interface OrderFormData {
+  customerName: string;
+  contactNumber: string;
+  email?: string;
+  cakes: CakeDetails[];
+  deliveryOption: 'pickup' | 'delivery';
+  deliveryDate: string;
+  deliveryAddress?: string;
+  specialInstructions?: string;
+  paymentMethod: 'cash' | 'card';
+  agreeToTerms: boolean;
+  agreeToRefundPolicy: boolean;
+  paymentPreview?: FileList;
+}
